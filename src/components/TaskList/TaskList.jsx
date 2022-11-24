@@ -5,6 +5,7 @@ import { db } from '../../firebase';
 import {
   query,
   collection,
+  orderBy,
   onSnapshot,
   updateDoc,
   doc,
@@ -26,7 +27,7 @@ const TaskList = () => {
 
   // Read tasks from fb
   React.useEffect(() => {
-    const q = query(collection(db, 'tasks'));
+    const q = query(collection(db, 'tasks'), orderBy('title'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let tasksArr = [];
       querySnapshot.forEach((doc) => {
@@ -49,7 +50,7 @@ const TaskList = () => {
       completed: false,
       description: '',
       file: false,
-      date: new Date(), //it will be added dayjs after a while
+      date: currentDate, //it will be added dayjs after a while
     });
     setInput('');
   };
@@ -92,7 +93,7 @@ const TaskList = () => {
         {tasks.map((task) => {
           return (
             <TaskItem
-              key={task.id}
+              /*  key={task.id} */
               task={task}
               toggleCompleted={toggleCompleted}
               deleteTask={deleteTask}
