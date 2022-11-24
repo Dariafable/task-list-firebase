@@ -1,24 +1,11 @@
 import React from 'react';
-import TaskList from './components/TaskList';
+import TaskList from './components/TaskList/TaskList';
 
-import { db, storage } from './firebase';
-import {
-  query,
-  collection,
-  onSnapshot,
-  updateDoc,
-  doc,
-  addDoc,
-  deleteDoc,
-} from 'firebase/firestore';
+import { storage } from './firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 function App() {
-  const [tasks, setTasks] = React.useState([]);
-  const [input, setInput] = React.useState('');
-
-  //Test/////////////////////////////////////////////////////////////////////
-
+  //Test////////////////////////////////////////////////////////////////////////////////////////////////////
   // State to store uploaded file
   const [file, setFile] = React.useState('');
 
@@ -59,57 +46,7 @@ function App() {
       }
     );
   };
-  //Test/////////////////////////////////////////////////////////////////
-
-  // Read todo from firebase
-  React.useEffect(() => {
-    const q = query(collection(db, 'tasks'));
-    const unsubscribe = onSnapshot(q, (querySnapshot) => {
-      let tasksArr = [];
-      querySnapshot.forEach((doc) => {
-        tasksArr.push({ ...doc.data(), id: doc.id });
-      });
-      setTasks(tasksArr);
-    });
-    return () => unsubscribe();
-  }, [file]);
-
-  // Add task
-  const addTask = async (e) => {
-    e.preventDefault(e);
-    if (input === '') {
-      alert('Please enter a valid todo');
-      return;
-    }
-    await addDoc(collection(db, 'tasks'), {
-      title: input,
-      completed: false,
-      description: '',
-    });
-    setInput('');
-  };
-
-  //Change input
-  const changeInput = ({ target }) => {
-    setInput(target.value);
-  };
-
-  //Update in firebase
-  const toggleCompleted = async (task) => {
-    await updateDoc(doc(db, 'tasks', task.id), {
-      completed: !task.completed,
-    });
-  };
-
-  //Delete selected task
-  const deleteTask = async (id) => {
-    await deleteDoc(doc(db, 'tasks', id));
-  };
-
-  //Clean all tasks
-  const cleanAllTasks = () => {
-    setTasks([]);
-  };
+  //Test/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   return (
     <div>
@@ -121,17 +58,7 @@ function App() {
       </form>
       {/* Test */}
 
-      <TaskList
-        tasks={tasks}
-        addTask={addTask}
-        input={input}
-        changeInput={changeInput}
-        toggleCompleted={toggleCompleted}
-        /*   handleChange={handleChange}
-        uploadFile={uploadFile} */
-        deleteTask={deleteTask}
-        cleanAllTasks={cleanAllTasks}
-      />
+      <TaskList />
     </div>
   );
 }
