@@ -6,12 +6,13 @@ import { RiDeleteBin3Line, RiBallPenLine, RiAttachment2 } from 'react-icons/ri';
 import Modal from '../Modal/Modal';
 import './TaskItemStyles.css';
 
-const TaskItem = ({ key, task, toggleCompleted, deleteTask }) => {
+const TaskItem = ({ task, toggleCompleted, deleteTask }) => {
   //State for editing a task (for a new value of a task)
   const [newValueTask, setNewValueTask] = React.useState({
     title: task.title,
     description: task.description,
   });
+
   //State for modal window
   const [open, setOpen] = React.useState(false);
 
@@ -30,10 +31,11 @@ const TaskItem = ({ key, task, toggleCompleted, deleteTask }) => {
     e.preventDefault();
     setNewValueTask({ ...newValueTask, [e.target.name]: e.target.value });
   };
+  console.log(newValueTask);
 
   return (
     <>
-      <li className='task-item' key={key}>
+      <li className='task-item' key={task.id}>
         <div className='item-name'>
           <div className='task-right'>
             <input
