@@ -57,7 +57,8 @@ const TaskList = () => {
 
   // Change input
   const changeInput = ({ target }) => {
-    setInput(target.value);
+    const inputValue = target.value;
+    setInput(inputValue);
   };
 
   // Completed task/update in fb
@@ -93,7 +94,7 @@ const TaskList = () => {
         {tasks.map((task) => {
           return (
             <TaskItem
-              /*  key={task.id} */
+              key={task.id}
               task={task}
               toggleCompleted={toggleCompleted}
               deleteTask={deleteTask}

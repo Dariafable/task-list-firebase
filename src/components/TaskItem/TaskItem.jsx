@@ -6,7 +6,7 @@ import { RiDeleteBin3Line, RiBallPenLine, RiAttachment2 } from 'react-icons/ri';
 import Modal from '../Modal/Modal';
 import './TaskItemStyles.css';
 
-const TaskItem = ({ task, toggleCompleted, deleteTask }) => {
+const TaskItem = ({ key, task, toggleCompleted, deleteTask }) => {
   //State for editing a task (for a new value of a task)
   const [newValueTask, setNewValueTask] = React.useState({
     title: task.title,
@@ -35,7 +35,7 @@ const TaskItem = ({ task, toggleCompleted, deleteTask }) => {
 
   return (
     <>
-      <li className='task-item' key={task.id}>
+      <li className='task-item' key={key}>
         <div className='item-name'>
           <div className='task-right'>
             <input
