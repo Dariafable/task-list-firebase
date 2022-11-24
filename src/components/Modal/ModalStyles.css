@@ -3,7 +3,7 @@
   left: 0;
   top: 0;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.4);
   transition: all 0.2s linear;
 }
