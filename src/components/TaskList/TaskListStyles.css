@@ -1,0 +1,61 @@
+.task-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  background: #eceef0;
+  border-radius: 15px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.task-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.date-box {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.current-date {
+  display: inline-block;
+  padding: 0.5rem;
+  font-weight: 700;
+}
+
+.all-tasks {
+  margin: 1rem 0;
+}
+
+.task-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-length {
+  font-weight: 700;
+}
+
+.task-clean {
+  padding: 0.7rem;
+  font-weight: 700;
+
+  background-color: rgba(133, 136, 247, 0.3);
+
+  border-radius: 5px;
+  cursor: pointer;
+
+  transition: background-color 0.1s linear;
+}
+
+.task-clean:hover {
+  background-color: rgba(21, 205, 229, 0.3);
+}
