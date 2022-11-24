@@ -2,7 +2,7 @@ import React from 'react';
 import TaskList from './components/TaskList/TaskList';
 
 import { storage } from './firebase';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytesResumable, uploadBytes, getDownloadURL } from 'firebase/storage';
 
 function App() {
   //Test////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -24,6 +24,10 @@ function App() {
 
     if (!file) return;
     const storageRef = ref(storage, `/files/${file.name}`);
+
+    uploadBytes(storageRef, file).then((snapshot) => {
+      console.log('Uploaded a blob or file!');
+    });
 
     // progress can be paused and resumed. It also exposes progress updates.
     // Receives the storage reference and the file to upload.
