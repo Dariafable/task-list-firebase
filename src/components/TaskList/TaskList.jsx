@@ -6,6 +6,7 @@ import {
   query,
   collection,
   orderBy,
+  serverTimestamp,
   onSnapshot,
   updateDoc,
   doc,
@@ -27,7 +28,7 @@ const TaskList = () => {
 
   // Read tasks from fb
   React.useEffect(() => {
-    const q = query(collection(db, 'tasks'), orderBy('title'));
+    const q = query(collection(db, 'tasks'), orderBy('timestamp', 'desc'));
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       let tasksArr = [];
       querySnapshot.forEach((doc) => {
@@ -51,6 +52,7 @@ const TaskList = () => {
       description: '',
       file: false,
       date: currentDate, //it will be added dayjs after a while
+      timestamp: serverTimestamp(), // Probably temporarely desicion
     });
     setInput('');
   };
