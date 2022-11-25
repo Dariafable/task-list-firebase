@@ -7,17 +7,17 @@ import { ref, uploadBytesResumable, uploadBytes, getDownloadURL } from 'firebase
 function App() {
   //Test////////////////////////////////////////////////////////////////////////////////////////////////////
   // State to store uploaded file
-  const [file, setFile] = React.useState('');
+  /* const [file, setFile] = React.useState(''); */
 
   // progress
-  const [percent, setPercent] = React.useState(0);
-
+  /*const [percent, setPercent] = React.useState(0);
+   */
   // Handle file upload event and update state - not used yet
   /*   const handleChange = ({ target }) => {
     setFile(target.files[0]);
   }; */
 
-  const uploadFile = (e) => {
+  /*  const uploadFile = (e) => {
     e.preventDefault();
 
     const file = e.target[0]?.files[0];
@@ -25,7 +25,7 @@ function App() {
     if (!file) return;
     const storageRef = ref(storage, `/files/${file.name}`);
 
-    uploadBytes(storageRef, file).then((snapshot) => {
+    uploadBytes(storageRef, file).then(() => {
       console.log('Uploaded a blob or file!');
     });
 
@@ -49,17 +49,33 @@ function App() {
         });
       }
     );
-  };
+  }; */
+
   //Test/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  /*   const handleSubmit = (e) => {
+    e.preventDefault();
+    const file = e.target[0]?.files[0];
+
+    if (!file) return null;
+    const storageRef = ref(storage, `files/${file.name}`);
+    uploadBytes(storageRef, file).then((snapshot) => {
+      e.target[0].value = '';
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        console.log(downloadURL);
+      });
+    });
+  }; */
 
   return (
     <div>
       {/* Test  */}
-      <form onSubmit={uploadFile}>
-        <input type='file' /* onChange={handleChange}  */ />
-        <button type='submit' /* onClick={handleChange} */>Upload</button>
-        <p>{percent}</p>
-      </form>
+      {/*  <form onSubmit={handleSubmit}>
+        <input type='file'  />
+        <button type='submit' >
+          Upload
+        </button>
+        <p> {percent} </p>
+      </form> */}
       {/* Test */}
 
       <TaskList />
