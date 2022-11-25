@@ -21,11 +21,15 @@
   border-radius: 6px;
 }
 
-.task-right {
+.task-desc {
+  font-size: 14px;
+}
+
+.task-left {
   display: flex;
 }
 
-.task-right input {
+.task-left input {
   margin-right: 0.5rem;
   align-self: center;
 }
@@ -34,7 +38,7 @@
   font-weight: 600;
 }
 
-.task-left {
+.task-right {
   display: flex;
   align-items: center;
 }

@@ -43,7 +43,7 @@ const TaskList = () => {
   const addTask = async (e) => {
     e.preventDefault(e);
     if (input === '') {
-      alert('Please enter a valid todo');
+      alert('Please enter a valid task');
       return;
     }
     await addDoc(collection(db, 'tasks'), {

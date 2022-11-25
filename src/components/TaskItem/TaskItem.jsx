@@ -37,7 +37,7 @@ const TaskItem = ({ key, task, toggleCompleted, deleteTask }) => {
     <>
       <li className='task-item' key={key}>
         <div className='item-name'>
-          <div className='task-right'>
+          <div className='task-left'>
             <input
               onChange={() => toggleCompleted(task)}
               type='checkbox'
@@ -45,7 +45,7 @@ const TaskItem = ({ key, task, toggleCompleted, deleteTask }) => {
             />
             <h4 className={task.completed ? 'task-completed' : 'task-title'}>{task.title}</h4>
           </div>
-          <div className='task-left'>
+          <div className='task-right'>
             <RiAttachment2 className='task-options' />
             <RiBallPenLine onClick={() => handleModal()} className='task-options' />
 
