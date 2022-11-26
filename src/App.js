@@ -12,6 +12,7 @@ function App() {
   // progress
   /*const [percent, setPercent] = React.useState(0);
    */
+
   // Handle file upload event and update state - not used yet
   /*   const handleChange = ({ target }) => {
     setFile(target.files[0]);
@@ -37,47 +38,63 @@ function App() {
       'state_changed',
       (snapshot) => {
         const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-
+  // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log(url);
+        });
+      }
+    );
         // update progress
         setPercent(percent);
       },
       (err) => console.log(err),
       () => {
+      
+  }; 
+
+  //Test/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  const [selectedFile, setSelectedFile] = React.useState('');
+  const [percent, setPercent] = React.useState(0);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const file = e.target[0]?.files[0];
+
+    if (!file) return null;
+    const storageRef = ref(storage, `files/${file.name}`);
+
+    uploadBytes(storageRef, file).then((snapshot) => {
+      e.target[0].value = '';
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        console.log(downloadURL);
+        setSelectedFile(downloadURL);
+      });
+    });
+
+    // progress can be paused and resumed. It also exposes progress updates.
+    // Receives the storage reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const percent = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+
+        // update progress
+        setPercent(percent);
+      },
+      (err) => console.log(err)
+    () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
         });
       }
     );
-  }; */
-
-  //Test/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /*   const handleSubmit = (e) => {
-    e.preventDefault();
-    const file = e.target[0]?.files[0];
-
-    if (!file) return null;
-    const storageRef = ref(storage, `files/${file.name}`);
-    uploadBytes(storageRef, file).then((snapshot) => {
-      e.target[0].value = '';
-      getDownloadURL(snapshot.ref).then((downloadURL) => {
-        console.log(downloadURL);
-      });
-    });
-  }; */
+  };  */
 
   return (
     <div>
-      {/* Test  */}
-      {/*  <form onSubmit={handleSubmit}>
-        <input type='file'  />
-        <button type='submit' >
-          Upload
-        </button>
-        <p> {percent} </p>
-      </form> */}
-      {/* Test */}
-
       <TaskList />
     </div>
   );

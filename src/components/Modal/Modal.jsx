@@ -34,6 +34,15 @@ const Modal = ({ open, setOpen, newValueTask, handleChangeTask, handleEditTask }
           />
         </div>
 
+        <div className='title-date'>final date</div>
+        <input
+          type='date'
+          name='date'
+          className='date-input'
+          value={newValueTask.date}
+          onChange={handleChangeTask}
+        />
+
         <span onClick={clickSave} className='save-change'>
           save
         </span>

@@ -22,9 +22,10 @@ import './TaskListStyles.css';
 const TaskList = () => {
   const currentDate = dayjs().format('DD MMM YYYY');
 
-  // States for tasks and input value
+  // States for tasks, dates and input value
   const [tasks, setTasks] = React.useState([]);
   const [input, setInput] = React.useState('');
+  const [date, setDate] = React.useState('');
 
   // Read tasks from fb
   React.useEffect(() => {
@@ -42,7 +43,7 @@ const TaskList = () => {
   // Add task
   const addTask = async (e) => {
     e.preventDefault(e);
-    if (input === '') {
+    if (!input || !date) {
       alert('Please enter a valid task');
       return;
     }
@@ -50,8 +51,8 @@ const TaskList = () => {
       title: input,
       completed: false,
       description: '',
-      file: false,
-      date: currentDate, //it will be added dayjs after a while
+      file: '',
+      date: date, //it will be added dayjs after a while
       timestamp: serverTimestamp(), // Probably temporarely desicion
     });
     setInput('');
@@ -90,7 +91,13 @@ const TaskList = () => {
         <span className='current-date'>{currentDate}</span>
       </div>
 
-      <AddTask input={input} changeInput={changeInput} addTask={addTask} />
+      <AddTask
+        input={input}
+        changeInput={changeInput}
+        addTask={addTask}
+        date={date}
+        setDate={setDate}
+      />
 
       <ul className='all-tasks'>
         {tasks.map((task) => {

@@ -7,6 +7,14 @@
   list-style-type: none;
 }
 
+.input-hidden {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
 .item-name {
   display: flex;
   justify-content: space-between;
