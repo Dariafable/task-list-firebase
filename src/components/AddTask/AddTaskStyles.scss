@@ -1,14 +1,14 @@
 .task-input {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .input-inner {
   margin-right: 0.5rem;
   padding: 0.5rem;
-  width: 100%;
-  min-width: 100px;
+  width: 490px;
 
   font-family: 'Montserrat', sans-serif;
   font-weight: 300;
