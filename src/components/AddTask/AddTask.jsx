@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
-import './AddTaskStyles.css';
+import './AddTaskStyles.scss';
 
 const AddTask = ({ input, addTask, changeInput, date, setDate }) => {
   return (
@@ -17,7 +17,7 @@ const AddTask = ({ input, addTask, changeInput, date, setDate }) => {
           />
           <input
             type='date'
-            className='inputDate'
+            className='input-date'
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />

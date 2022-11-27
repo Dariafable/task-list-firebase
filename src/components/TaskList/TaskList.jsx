@@ -17,7 +17,7 @@ import {
 import TaskItem from '../TaskItem/TaskItem';
 import AddTask from '../AddTask/AddTask';
 
-import './TaskListStyles.css';
+import './TaskListStyles.scss';
 
 const TaskList = () => {
   const currentDate = dayjs().format('DD MMM YYYY');
@@ -42,7 +42,7 @@ const TaskList = () => {
 
   // Add task
   const addTask = async (e) => {
-    e.preventDefault(e);
+    e.preventDefault();
     if (!input || !date) {
       alert('Please enter a valid task');
       return;
@@ -52,26 +52,24 @@ const TaskList = () => {
       completed: false,
       description: '',
       file: '',
-      date: date, //it will be added dayjs after a while
-      timestamp: serverTimestamp(), // Probably temporarely desicion
+      date: date,
+      timestamp: serverTimestamp(),
     });
     setInput('');
+    setDate('');
   };
 
-  // Change input
   const changeInput = ({ target }) => {
     const inputValue = target.value;
     setInput(inputValue);
   };
 
-  // Completed task/update in fb
   const toggleCompleted = async (task) => {
     await updateDoc(doc(db, 'tasks', task.id), {
       completed: !task.completed,
     });
   };
 
-  // Delete selected task
   const deleteTask = async (id) => {
     await deleteDoc(doc(db, 'tasks', id));
   };
@@ -102,19 +100,16 @@ const TaskList = () => {
       <ul className='all-tasks'>
         {tasks.map((task) => {
           return (
-            <TaskItem
-              key={task.id}
-              task={task}
-              toggleCompleted={toggleCompleted}
-              deleteTask={deleteTask}
-            />
+            <React.Fragment key={task.id}>
+              <TaskItem task={task} toggleCompleted={toggleCompleted} deleteTask={deleteTask} />
+            </React.Fragment>
           );
         })}
       </ul>
 
       <div className='task-bottom'>
         <span className='task-length'>
-          {tasks.length < 1 ? 'you have no tasks' : `tasks: ${tasks.length}`}
+          {!tasks.length ? 'you have no tasks' : `tasks: ${tasks.length}`}
         </span>
 
         <span className='task-clean' onClick={cleanAllTasks}>

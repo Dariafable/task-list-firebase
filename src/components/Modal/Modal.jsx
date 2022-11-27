@@ -1,5 +1,5 @@
 import { RiCloseLine } from 'react-icons/ri';
-import './ModalStyles.css';
+import './ModalStyles.scss';
 
 const Modal = ({ open, setOpen, newValueTask, handleChangeTask, handleEditTask }) => {
   const clickSave = () => {
@@ -10,12 +10,12 @@ const Modal = ({ open, setOpen, newValueTask, handleChangeTask, handleEditTask }
   return (
     <div className={`overlay animated ${open ? 'show' : ''}`}>
       <div className='modal'>
-        <RiCloseLine onClick={() => setOpen(false)} className='icon-modal' />
+        <RiCloseLine className='icon-modal' onClick={() => setOpen(false)} />
 
-        <div className='title-wrapper'>
-          <p className='title-task'>task</p>
+        <div className='task-wrapper'>
+          <p className='modal-title'>task</p>
           <input
-            className='title-input'
+            className='modal-input'
             name='title'
             type='text'
             value={newValueTask.title}
@@ -24,7 +24,7 @@ const Modal = ({ open, setOpen, newValueTask, handleChangeTask, handleEditTask }
         </div>
 
         <div className='desc-wrapper'>
-          <p className='desc-title'>description</p>
+          <p className='modal-title'>description</p>
           <textarea
             className='desc-textarea'
             name='description'
@@ -34,16 +34,16 @@ const Modal = ({ open, setOpen, newValueTask, handleChangeTask, handleEditTask }
           />
         </div>
 
-        <div className='title-date'>final date</div>
+        <div className='modal-title'>final date</div>
         <input
           type='date'
           name='date'
-          className='date-input'
+          className='modal-date'
           value={newValueTask.date}
           onChange={handleChangeTask}
         />
 
-        <span onClick={clickSave} className='save-change'>
+        <span className='save-change' onClick={clickSave}>
           save
         </span>
       </div>

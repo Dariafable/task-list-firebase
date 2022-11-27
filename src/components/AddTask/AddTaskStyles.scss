@@ -1,0 +1,63 @@
+.task-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-inner {
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  width: 100%;
+  min-width: 100px;
+
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+
+  &:active,
+  &:hover,
+  &:focus {
+    outline: 0;
+    outline-offset: 0;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+  }
+}
+
+.task-add {
+  padding: 0.7rem;
+  min-width: 18px;
+  min-height: 18px;
+
+  color: #4b00ff;
+  cursor: pointer;
+}
+
+.input-date {
+  min-width: 115px;
+  background-color: rgba(133, 136, 247, 0.5);
+  padding: 0.4rem;
+  color: #000;
+  font-family: 'Montserrat';
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  transition: background-color 0.1s linear;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(21, 205, 229, 0.5);
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    background-color: #fff;
+    padding: 3px;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+}
