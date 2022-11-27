@@ -93,6 +93,13 @@
   margin-right: 0.2rem;
   text-decoration: none;
   color: #4b00ff;
+  font-weight: 600;
+
+  transition: color 0.1s linear;
+
+  &:hover {
+    color: rgba(21, 205, 229, 1);
+  }
 }
 
 .file-remover {
