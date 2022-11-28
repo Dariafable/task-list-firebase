@@ -112,9 +112,9 @@ const TaskList = () => {
           {!tasks.length ? 'you have no tasks' : `tasks: ${tasks.length}`}
         </span>
 
-        <span className='task-clean' onClick={cleanAllTasks}>
+        <button className='task-clean' onClick={cleanAllTasks}>
           clean all
-        </span>
+        </button>
       </div>
     </div>
   );

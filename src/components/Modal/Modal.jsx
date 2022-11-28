@@ -43,9 +43,9 @@ const Modal = ({ open, setOpen, newValueTask, handleChangeTask, handleEditTask }
           onChange={handleChangeTask}
         />
 
-        <span className='save-change' onClick={clickSave}>
+        <button className='save-change' onClick={clickSave}>
           save
-        </span>
+        </button>
       </div>
     </div>
   );
